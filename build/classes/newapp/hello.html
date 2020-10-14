@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Canvas Constellations</title>
+<style type="text/css">
+html, body { 
+  margin:0;
+  padding:0;
+  height:100%;
+  background: url('https://carlossato.cocolog-nifty.com/photos/uncategorized/2012/05/28/img_4369.jpg') no-repeat;
+  background-size:cover;
+  background-color:black;
+}
+#container {
+  overflow:hidden;
+  position:relative;
+}
+h1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 360px;
+  color: white;
+  font-family: 'Rancho', sans-serif;
+  font-size: 5em;
+}
+#stars {
+  z-index:0;
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+<body>
+	
+
+  <div id="container" style="width: 100%; height: 100%">
+    <canvas id="stars" width="1920" height="600"></canvas>
+  </div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+
+<script type="text/javascript">
+var smooth = true;
+var WIDTH=document.documentElement.clientWidth;
+var HEIGHT=600;
+var totalStars=165;
+var showFinal = false;
+var scrollVelocity = 20;
+var canvas;
+var con;
+var g;
+var stars = new Array();
+var screenOffset = (document.documentElement.clientWidth - 427)/2;
+var timer = 0;
+
+//setup
+$(document).ready(function(){
+  canvas = document.getElementById('stars');
+  con = canvas.getContext('2d');
+  for(var i = 0; i < totalStars; i++) {
+    stars[i] = new Circle();
+    stars[i].r = Math.random() * (7 - 2) + 2;
+    stars[i].init();
+    if(i === (totalStars-1)){
+      setFinalPos();
+    }
+  }
+  setInterval(draw,60);
+});
+
+//controls
+
+window.addEventListener("keydown", smoothness, false);
+function smoothness(e) {
+  if (e.keyCode==83) {
+    if (smooth) {
+      smooth = false;
+    } else {
+      smooth = true;
+    }
+  }
+}
+
+window.addEventListener("mousewheel", MouseWheelHandler, false);
+window.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+function MouseWheelHandler(e) {
+
+  var e = window.event || e; // old IE support
+  var delta = Math.max(-30, Math.min(60, (e.wheelDelta || -e.detail)));
+
+  if (delta > 0) {
+    showFinal=false;
+    for(var i = 0; i < stars.length; i++) {
+      stars[i].reseting = true;
+    }
+  } else {
+    showFinal=true;
+  }
+  for(var i = 0; i < stars.length; i++) {
+    stars[i].move();
+  }
+  e.preventDefault();
+}
+
+window.addEventListener("keydown", keyDown, false);
+function keyDown(e) {
+  var keyCode = e.keyCode;
+
+  if (keyCode==38) {
+    //up
+    showFinal = false;
+    for(var i = 0; i < stars.length; i++) {
+      stars[i].reseting = true;
+    }
+  } 
+
+  if (keyCode==40) {
+    //down
+    showFinal = true;
+  }
+
+  for(var i = 0; i < stars.length; i++) {
+    stars[i].move();
+  }
+  e.preventDefault();
+}
+
+//iterated 'frames'
+function draw() {
+  con.clearRect(0,0,WIDTH,HEIGHT);
+  for(var i = 0; i < stars.length; i++) {
+    
+    if (!smooth) {
+      if (!showFinal && !stars[0].reseting) {
+        stars[i].move();
+      }
+    } else {
+      stars[i].move();
+    }
+    stars[i].draw();
+  }
+}
+
+//star object definition
+function Circle() {
+    this.s = {x_speed:0.1, y_speed:0.2, radius_max:10, animSpeed:5};
+    this.init = function() {
+        this.x = this.origX = WIDTH*Math.random();
+        this.y = this.origY = HEIGHT*Math.random();
+        this.dx = (Math.random()*this.s.x_speed) * (Math.random() < .5 ? -1 : 1);
+        this.dy = (Math.random()*this.s.y_speed) * (Math.random() < .5 ? -1 : 1);
+    this.reseting = false;
+    }
+
+    this.fade = function() {
+    var pi = 3.14;
+    var frequency = 0.4;
+    timer++;
+    return 0.2*(1+Math.sin(2 * pi * frequency * timer))
+    }
+
+    this.draw = function() {
+        var new_opacity = this.fade();
+        con.beginPath();
+        con.arc(this.x,this.y,this.r,0,Math.PI*2,true);
+        con.closePath();
+        g = con.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
+        g.addColorStop(0.0, 'rgba(255,255,255,1)');
+        g.addColorStop(0.2, 'rgba(255,255,255,1)');
+        g.addColorStop(0.5, 'rgba(255,255,255,'+(new_opacity)+')');
+        g.addColorStop(1.0, 'rgba(45,57,99,0)');
+        con.fillStyle = g;
+        con.fill();
+    }
+
+    this.move = function() {
+      if(!showFinal) {
+        if(this.reseting) {
+          if (this.x < this.origX+50 && this.x > this.origX-50) {
+            this.reseting = false;
+          }
+          //go to original position
+        this.x += (this.origX-this.x)/this.s.animSpeed + ((this.origX-this.x)/this.s.animSpeed < this.dx ? this.dx : 0);
+        this.y += (this.origY-this.y)/this.s.animSpeed + ((this.origY-this.y)/this.s.animSpeed < this.dy ? this.dy : 0);
+      } else {
+        //float around
+        this.x += 1*this.dx;
+          this.y += 1*this.dy;
+          if(this.x > WIDTH || this.x < 0) this.dx *= -1;
+          if(this.y > HEIGHT || this.y < 0) this.dy *= -1;
+        }
+      } else {
+        //go to final position
+      this.x += ((this.pos.x+screenOffset)-this.x)/this.s.animSpeed;
+      this.y += ((this.pos.y)-this.y)/this.s.animSpeed;
+      }
+    }
+}
+
+function setFinalPos() {
+
+  stars[0].pos = {x:409, y:338};
+  stars[1].pos = {x:384, y:330};
+  stars[2].pos = {x:364, y:320};
+  stars[3].pos = {x:347, y:312};
+  stars[4].pos = {x:334, y:299};
+  stars[5].pos = {x:352, y:301};
+  stars[6].pos = {x:338, y:293};
+  stars[7].pos = {x:322, y:288};
+  stars[8].pos = {x:305, y:280};
+  stars[9].pos = {x:292, y:280};
+  stars[10].pos = {x:315, y:270};
+  stars[11].pos = {x:300, y:274};
+  stars[12].pos = {x:277, y:274};
+  stars[13].pos = {x:249, y:280};
+  stars[14].pos = {x:231, y:280};
+  stars[15].pos = {x:216, y:280};
+  stars[16].pos = {x:214, y:271};
+  stars[17].pos = {x:202, y:278};
+  stars[18].pos = {x:190, y:281};
+  stars[19].pos = {x:173, y:280};
+  stars[20].pos = {x:155, y:280};
+  stars[21].pos = {x:144, y:280};
+  stars[22].pos = {x:118, y:288};
+  stars[23].pos = {x:95, y:286};
+  stars[24].pos = {x:81, y:281};
+  stars[25].pos = {x:186, y:272};
+  stars[26].pos = {x:177, y:254};
+  stars[27].pos = {x:172, y:244};
+  stars[28].pos = {x:142, y:244};
+  stars[29].pos = {x:123, y:251};
+  stars[30].pos = {x:113, y:254};
+  stars[31].pos = {x:186, y:268};
+  stars[32].pos = {x:195, y:259};
+  stars[33].pos = {x:202, y:256};
+  stars[34].pos = {x:202, y:271};
+  stars[35].pos = {x:201, y:240};
+  stars[36].pos = {x:201, y:224};
+  stars[37].pos = {x:202, y:202};
+  stars[38].pos = {x:227, y:275};
+  stars[39].pos = {x:228, y:250};
+  stars[40].pos = {x:237, y:231};
+  stars[41].pos = {x:240, y:214};
+  stars[42].pos = {x:242, y:193};
+  stars[43].pos = {x:243, y:164};
+  stars[44].pos = {x:231, y:151};
+  stars[45].pos = {x:217, y:140};
+  stars[46].pos = {x:205, y:140};
+  stars[47].pos = {x:237, y:240};
+  stars[48].pos = {x:250, y:224};
+  stars[49].pos = {x:251, y:233};
+  stars[50].pos = {x:259, y:217};
+  stars[51].pos = {x:269, y:200};
+  stars[52].pos = {x:268, y:215};
+  stars[53].pos = {x:279, y:189};
+  stars[54].pos = {x:280, y:171};
+  stars[55].pos = {x:280, y:159};
+  stars[56].pos = {x:284, y:174};
+  stars[57].pos = {x:283, y:155};
+  stars[58].pos = {x:275, y:143};
+  stars[59].pos = {x:265, y:132};
+  stars[60].pos = {x:275, y:132};
+  stars[61].pos = {x:258, y:121};
+  stars[62].pos = {x:252, y:106};
+  stars[63].pos = {x:251, y:87};
+  stars[64].pos = {x:257, y:69};
+  stars[65].pos = {x:264, y:52};
+  stars[66].pos = {x:265, y:36};
+  stars[67].pos = {x:259, y:23};
+  stars[68].pos = {x:260, y:30};
+  stars[69].pos = {x:248, y:38};
+  stars[70].pos = {x:240, y:46};
+  stars[71].pos = {x:229, y:46};
+  stars[72].pos = {x:215, y:51};
+  stars[73].pos = {x:202, y:60};
+  stars[74].pos = {x:195, y:68};
+  stars[75].pos = {x:208, y:54};
+  stars[76].pos = {x:190, y:44};
+  stars[77].pos = {x:176, y:29};
+  stars[78].pos = {x:169, y:23};
+  stars[79].pos = {x:200, y:59};
+  stars[80].pos = {x:178, y:45};
+  stars[81].pos = {x:168, y:37};
+  stars[82].pos = {x:162, y:21};
+  stars[83].pos = {x:156, y:42};
+  stars[84].pos = {x:158, y:66};
+  stars[85].pos = {x:171, y:99};
+  stars[86].pos = {x:175, y:107};
+  stars[87].pos = {x:188, y:104};
+  stars[88].pos = {x:199, y:92};
+  stars[89].pos = {x:202, y:82};
+  stars[90].pos = {x:170, y:110};
+  stars[91].pos = {x:180, y:120};
+  stars[92].pos = {x:180, y:138};
+  stars[93].pos = {x:172, y:149};
+  stars[94].pos = {x:155, y:156};
+  stars[95].pos = {x:153, y:160};
+  stars[96].pos = {x:160, y:163};
+  stars[97].pos = {x:156, y:169};
+  stars[98].pos = {x:151, y:186};
+  stars[99].pos = {x:142, y:203};
+  stars[100].pos = {x:111, y:220};
+  stars[101].pos = {x:93, y:234};
+  stars[102].pos = {x:75, y:248};
+  stars[103].pos = {x:65, y:261};
+  stars[104].pos = {x:55, y:278};
+  stars[105].pos = {x:55, y:310};
+  stars[106].pos = {x:57, y:344};
+  stars[107].pos = {x:55, y:298};
+  stars[108].pos = {x:71, y:370};
+  stars[109].pos = {x:68, y:348};
+  stars[110].pos = {x:83, y:363};
+  stars[111].pos = {x:101, y:374};
+  stars[112].pos = {x:115, y:384};
+  stars[113].pos = {x:132, y:392};
+  stars[114].pos = {x:116, y:377};
+  stars[115].pos = {x:141, y:389};
+  stars[116].pos = {x:168, y:393};
+  stars[117].pos = {x:187, y:394};
+  stars[118].pos = {x:145, y:379};
+  stars[119].pos = {x:164, y:383};
+  stars[120].pos = {x:191, y:383};
+  stars[121].pos = {x:215, y:384};
+  stars[122].pos = {x:238, y:385};
+  stars[123].pos = {x:257, y:382};
+  stars[124].pos = {x:238, y:376};
+  stars[125].pos = {x:273, y:374};
+  stars[126].pos = {x:303, y:363};
+  stars[127].pos = {x:321, y:355};
+  stars[128].pos = {x:345, y:351};
+  stars[129].pos = {x:324, y:349};
+  stars[130].pos = {x:344, y:344};
+  stars[131].pos = {x:370, y:342};
+  stars[132].pos = {x:377, y:343};
+  stars[133].pos = {x:359, y:338};
+  stars[134].pos = {x:387, y:338};
+  stars[135].pos = {x:250, y:370};
+  stars[136].pos = {x:260, y:362};
+  stars[137].pos = {x:247, y:354};
+  stars[138].pos = {x:260, y:347};
+  stars[139].pos = {x:269, y:336};
+  stars[140].pos = {x:253, y:332};
+  stars[141].pos = {x:278, y:316};
+  stars[142].pos = {x:288, y:310};
+  stars[143].pos = {x:298, y:303};
+  stars[144].pos = {x:279, y:299};
+  stars[145].pos = {x:265, y:295};
+  stars[146].pos = {x:279, y:288};
+  stars[147].pos = {x:265, y:285};
+  stars[148].pos = {x:248, y:207};
+  stars[149].pos = {x:252, y:184};
+  stars[150].pos = {x:251, y:166};
+  stars[151].pos = {x:248, y:152};
+  stars[152].pos = {x:244, y:126};
+  stars[153].pos = {x:240, y:120};
+  stars[154].pos = {x:243, y:112};
+  stars[155].pos = {x:247, y:104};
+  stars[156].pos = {x:231, y:127};
+  stars[157].pos = {x:221, y:119};
+  stars[158].pos = {x:213, y:117};
+  stars[159].pos = {x:221, y:99};
+  stars[160].pos = {x:224, y:89};
+  stars[161].pos = {x:237, y:80};
+  stars[162].pos = {x:244, y:69};
+  stars[163].pos = {x:242, y:54};
+  stars[164].pos = {x:253, y:43};
+}
+
+
+
+
+  </script>
+	
+</body>      

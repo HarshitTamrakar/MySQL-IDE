@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" fx:id="basepane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newapp.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="AUTOCOMPLETE_ListView" layoutX="43.0" layoutY="791.0" onKeyPressed="#AutoComplete_key_pressed" opacity="0.0" prefHeight="252.0" prefWidth="200.0" style="-fx-background-color: Black; -fx-border-color: white;" />
+      <ListView fx:id="SUGGESTIONS_ListView" layoutX="1680.0" layoutY="791.0" onKeyPressed="#Suggestion_key_pressed" opacity="0.0" prefHeight="252.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: white;" />
+      <Label fx:id="press_control" alignment="CENTER" layoutX="1680.0" layoutY="720.0" opacity="0.0" prefHeight="54.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-radius: 20; -fx-background-radius: 20;" text="Press Left Control" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="press_down" alignment="CENTER" layoutX="43.0" layoutY="720.0" opacity="0.0" prefHeight="54.0" prefWidth="200.0" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="Press Down" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="type_of_data1" alignment="CENTER" layoutX="1680.0" layoutY="720.0" prefHeight="54.0" prefWidth="200.0" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="Methods" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect></Label>
+      <Label fx:id="type_of_data" alignment="CENTER" layoutX="43.0" layoutY="720.0" prefHeight="54.0" prefWidth="200.0" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="Keywords" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect></Label>
+      <Label fx:id="Syntax" layoutX="262.0" layoutY="819.0" opacity="0.0" prefHeight="54.0" prefWidth="1398.0" style="-fx-border-color: White; -fx-background-color: black; -fx-background-radius: 20; -fx-border-radius: 20;" textFill="WHITE">
+         <font>
+            <Font name="Monospaced Regular" size="20.0" />
+         </font></Label>
+      <JFXButton fx:id="Clear_button" buttonType="RAISED" focusTraversable="false" layoutX="127.0" layoutY="64.0" onAction="#clear_button_pressed" prefHeight="36.0" prefWidth="87.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="BatmanForeverAlternate" size="14.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="INPUT_TextArea" focusColor="WHITE" labelFloat="true" layoutX="262.0" layoutY="747.0" onKeyPressed="#Input_key_pressed" onKeyReleased="#Input_key_released" onMouseClicked="#OskTyping" prefHeight="54.0" prefWidth="1398.0" promptText="Enter query Here" style="-fx-background-radius: 20;" unFocusColor="#646464">
+         <font>
+            <Font name="Monospaced Regular" size="22.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </JFXTextField>
+      <JFXTextArea fx:id="OUTPUT_TextArea" editable="false" focusColor="BLACK" layoutX="45.0" layoutY="112.0" prefHeight="584.0" prefWidth="1834.0" style="-fx-border-color: white;" unFocusColor="BLACK">
+         <font>
+            <Font name="Monospaced Regular" size="24.0" />
+         </font>
+      </JFXTextArea>
+      <JFXTextField fx:id="Search_query_tf" focusColor="WHITE" labelFloat="true" layoutX="1542.0" layoutY="62.0" onKeyPressed="#query_tf_key_pressed" prefHeight="39.0" prefWidth="335.0" promptText="Search Query" unFocusColor="#616161">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </JFXTextField>
+      <ListView fx:id="searched_query" layoutX="1543.0" layoutY="110.0" onKeyPressed="#searched_query_key_pressed" onMouseClicked="#searched_query_click" opacity="0.0" prefHeight="54.0" prefWidth="335.0" />
+      <Label fx:id="logo_noglow" layoutX="45.0" layoutY="-4.0" prefHeight="36.0" prefWidth="144.0" text="sirius ide" textFill="WHITE">
+         <font>
+            <Font name="BatmanForeverAlternate" size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="customization_panel" layoutX="-370.0" prefHeight="1083.0" prefWidth="364.0" style="-fx-background-color: white;">
+         <children>
+            <Separator layoutX="-31.0" layoutY="327.0" prefHeight="26.0" prefWidth="398.0" />
+            <Label layoutX="37.0" layoutY="6.0" prefHeight="36.0" prefWidth="305.0" text="Customization">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="353.0" prefHeight="39.0" prefWidth="87.0" text="Text Size :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXSlider fx:id="text_size_slider" indicatorPosition="RIGHT" layoutX="22.0" layoutY="407.0" majorTickUnit="6.0" max="72.0" min="2.0" minorTickCount="2" onMouseClicked="#text_size_mouse_clicked" prefHeight="26.0" prefWidth="326.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="24.0" />
+            <Label fx:id="text_size_label" layoutX="108.0" layoutY="355.0" prefHeight="36.0" prefWidth="42.0" text="24">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXColorPicker fx:id="ChangeColor" layoutX="186.0" layoutY="482.0" onAction="#ColorChanger" prefHeight="36.0" prefWidth="122.0" style="-fx-border-radius: 20; -fx-background-radius: 20;" />
+            <Label layoutX="14.0" layoutY="482.0" prefHeight="39.0" prefWidth="162.0" text="Background Color :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="reset_color_button" buttonType="RAISED" focusTraversable="false" layoutX="81.0" layoutY="534.0" onAction="#reset_color_clicked" prefHeight="46.0" prefWidth="200.0" ripplerFill="BLACK" style="-fx-border-color: black; -fx-border-radius: 20;" text="Reset to Default">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="reset_text_button" buttonType="RAISED" focusTraversable="false" layoutX="149.0" layoutY="355.0" onAction="#reset_text_clicked" prefHeight="36.0" prefWidth="200.0" ripplerFill="BLACK" style="-fx-border-color: black; -fx-border-radius: 20;" text="Reset to default">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Save_button" buttonType="RAISED" focusTraversable="false" layoutX="48.0" layoutY="617.0" onAction="#save_as_text_pressed" prefHeight="46.0" prefWidth="274.0" ripplerFill="BLACK" style="-fx-border-color: BLACk; -fx-border-radius: 20;" text="Save as .txt">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="browser_button" buttonType="RAISED" focusTraversable="false" layoutX="48.0" layoutY="683.0" onAction="#browser_button_clicked" prefHeight="46.0" prefWidth="274.0" ripplerFill="BLACK" style="-fx-border-color: black; -fx-border-radius: 20;" text="Open browser">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="Profile_pic" fitHeight="270.0" fitWidth="360.0" layoutX="5.0" layoutY="51.0" pickOnBounds="true">
+               <image>
+                  <Image url="@firstCapture.jpg" />
+               </image>
+               <effect>
+                  <Glow level="1.0" />
+               </effect></ImageView>
+            <JFXButton fx:id="Take_photo" buttonType="RAISED" layoutX="293.0" layoutY="289.0" onAction="#Take_photo_clicked" ripplerFill="WHITE" style="-fx-background-color: Green; -fx-background-radius: 20;" text="Capture" textFill="WHITE" />
+            <Separator layoutX="-3.0" layoutY="458.0" prefHeight="14.0" prefWidth="368.0" />
+            <Separator layoutX="2.0" layoutY="589.0" prefHeight="14.0" prefWidth="368.0" />
+            <Separator layoutX="2.0" layoutY="742.0" prefHeight="14.0" prefWidth="368.0" />
+            <Label fx:id="name_tf" layoutX="18.0" layoutY="275.0" text="Name :" textFill="WHITE" />
+            <Label fx:id="email_tf" layoutX="20.0" layoutY="297.0" text="Email :" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <JFXHamburger fx:id="ham1" focusTraversable="true" layoutX="43.0" layoutY="68.0" onMouseClicked="#hamburger_clicked" prefHeight="26.0" prefWidth="30.0" />
+      <Label fx:id="close_button" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="1873.0" onMouseClicked="#close_button_pressed" onMouseEntered="#exit_entered" onMouseExited="#exit_exited" prefHeight="39.0" prefWidth="42.0" text="X" textFill="WHITE">
+         <font>
+            <Font name="BatmanForeverAlternate" size="36.0" />
+         </font>
+      </Label>
+      <Separator layoutX="-27.0" layoutY="34.0" prefHeight="14.0" prefWidth="1947.0">
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Separator>
+      <AnchorPane fx:id="web_browser_pane" layoutX="340.0" layoutY="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="340.0" onMouseClicked="#webview_panel_Clicked" prefHeight="610.0" prefWidth="1040.0" scaleX="0.1" style="-fx-border-color: WHITE; -fx-border-width: 2; -fx-background-color: Black;">
+         <children>
+            <Label fx:id="move_label" alignment="CENTER" focusTraversable="false" layoutX="903.0" layoutY="66.0" onMouseClicked="#webview_panel_Clicked" onMouseDragged="#move_dragged" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: WHITE; -fx-background-radius: 20;" text="Move" wrapText="true" AnchorPane.rightAnchor="14.599999999999909" AnchorPane.topAnchor="66.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="MOVE" />
+               </cursor>
+            </Label>
+            <WebView fx:id="webview_browser" layoutX="14.0" layoutY="11.0" maxHeight="1000.0" maxWidth="1000.0" prefHeight="597.0" prefWidth="879.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="9.0" />
+            <JFXButton fx:id="Close_button_browser" buttonType="RAISED" focusTraversable="false" layoutX="900.0" layoutY="156.0" onAction="#browser_closed_button_pressed" prefHeight="32.0" prefWidth="122.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="Close" textFill="WHITE" AnchorPane.rightAnchor="17.600000000000023" AnchorPane.topAnchor="156.0">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+            <ComboBox fx:id="size_combo_box" focusTraversable="false" layoutX="900.0" layoutY="22.0" onAction="#size_combobox_clicked" prefHeight="26.0" prefWidth="122.0" promptText="Search For" style="-fx-background-radius: 20;" AnchorPane.rightAnchor="17.600000000000023" AnchorPane.topAnchor="22.0" />
+            <ComboBox fx:id="size_combobox" focusTraversable="false" layoutX="903.0" layoutY="110.0" onAction="#size_combobox_clicked1" prefHeight="26.0" prefWidth="122.0" promptText="Set Size" style="-fx-background-radius: 20;" AnchorPane.rightAnchor="14.599999999999909" AnchorPane.topAnchor="110.0" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </AnchorPane>
+      <Label fx:id="logo_glow" layoutX="45.0" layoutY="-4.0" opacity="0.0" prefHeight="36.0" prefWidth="144.0" text="sirius ide" textFill="WHITE">
+         <font>
+            <Font name="BatmanForeverAlternate" size="20.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <AnchorPane fx:id="user_check_pane" layoutX="760.0" layoutY="340.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: WHite;">
+         <children>
+            <JFXTextField fx:id="username_mysql_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" layoutX="14.0" layoutY="41.0" promptText="Username" unFocusColor="#777777">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="check_mysql_tf" buttonType="RAISED" focusTraversable="false" layoutX="56.0" layoutY="151.0" onAction="#check_username_password" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="Check" textFill="WHITE">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXPasswordField fx:id="password_mysql_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" layoutX="14.0" layoutY="100.0" promptText="Password" unFocusColor="#777777">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXPasswordField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="1.0" prefHeight="26.0" prefWidth="158.0" text="DB INFO" textFill="WHITE">
+               <font>
+                  <Font name="BatmanForeverAlternate" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

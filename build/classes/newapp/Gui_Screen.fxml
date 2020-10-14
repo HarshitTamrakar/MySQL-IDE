@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="Main_Panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newapp.Gui_ScreenController">
+   <children>
+      <AnchorPane fx:id="Table_Panel" prefHeight="650.0" prefWidth="1920.0" style="-fx-background-color: BLACK;">
+         <children>
+            <TreeTableView fx:id="main_table" editable="true" layoutX="261.0" layoutY="43.0" prefHeight="586.0" prefWidth="1107.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="Use_Panel" layoutX="250.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: BLACK; -fx-border-color: White;">
+         <children>
+            <JFXComboBox fx:id="database_combobox" focusColor="WHITE" labelFloat="true" layoutX="63.0" layoutY="54.0" onAction="#databae_combobox_clicked" prefHeight="26.0" prefWidth="250.0" promptText="Select Database" style="-fx-background-color: black;" unFocusColor="BLACK" visibleRowCount="5">
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </JFXComboBox>
+            <JFXComboBox fx:id="table_combobox" focusColor="WHITE" labelFloat="true" layoutX="740.0" layoutY="54.0" onAction="#table_combobox_clicked" prefHeight="26.0" prefWidth="250.0" promptText="Select Table" visibleRowCount="5" />
+            <JFXButton fx:id="create_button1" buttonType="RAISED" layoutX="77.0" layoutY="135.0" onAction="#create_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" style="-fx-border-color: white;" text="Create New Table" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Create_Panel" layoutX="1920.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: red; -fx-border-color: White;">
+         <children>
+            <Label text="create" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Insert_Panel" layoutX="1920.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: white; -fx-border-color: White;">
+         <children>
+            <Label text="insert" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="View_Panel" layoutX="1920.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: yellow; -fx-border-color: White;">
+         <children>
+            <Label text="view" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Update_Panel" layoutX="1920.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: blue; -fx-border-color: White;">
+         <children>
+            <Label text="update" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Delete_Panel" layoutX="1920.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: green; -fx-border-color: White;">
+         <children>
+            <Label text="delete" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Alter_Panel" layoutX="1920.0" layoutY="695.0" prefHeight="385.0" prefWidth="1670.0" style="-fx-background-color: purple; -fx-border-color: White;">
+         <children>
+            <Label text="Alter" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="650.0" prefHeight="430.0" prefWidth="250.0" style="-fx-background-color: BLACK; -fx-border-color: White;">
+         <children>
+            <Separator layoutY="42.0" prefHeight="7.0" prefWidth="250.0">
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Separator>
+            <Label layoutX="14.0" layoutY="5.0" prefHeight="40.0" prefWidth="222.0" text="Operations" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="use_button" buttonType="RAISED" layoutX="14.0" layoutY="67.0" onAction="#use_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="Use" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="create_button" buttonType="RAISED" layoutX="14.0" layoutY="107.0" onAction="#create_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="Create" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="insert_button" buttonType="RAISED" layoutX="15.0" layoutY="147.0" onAction="#insert_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="Insert" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="view_button" buttonType="RAISED" layoutX="15.0" layoutY="187.0" onAction="#view_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="View" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="update_button" buttonType="RAISED" layoutX="15.0" layoutY="227.0" onAction="#update_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="Update" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="alter_button" buttonType="RAISED" layoutX="15.0" layoutY="307.0" onAction="#alter_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="Alter" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="delete_button" buttonType="RAISED" layoutX="15.0" layoutY="267.0" onAction="#delete_clicked" prefHeight="40.0" prefWidth="222.0" ripplerFill="WHITE" text="Delete" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="252.0" layoutY="650.0" prefHeight="46.0" prefWidth="1670.0" style="-fx-background-color: black; -fx-border-color: White;" text="Label" />
+   </children>
+</AnchorPane>

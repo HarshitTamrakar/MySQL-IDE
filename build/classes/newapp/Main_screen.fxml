@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="MainPanel" maxHeight="0.0" maxWidth="0.0" minHeight="1080.0" minWidth="1920.0" opacity="0.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newapp.Main_screenController">
+   <children>
+      <AnchorPane fx:id="Center_panel" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="space_bigger" cache="true" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@myspace_bigger.png" />
+               </image>
+            </ImageView>
+            <Separator fx:id="margin" layoutX="960.0" layoutY="-1080.0" orientation="VERTICAL" prefHeight="1080.0" />
+            <AnchorPane fx:id="LOGIN_PANEL" layoutX="460.0" opacity="0.0" prefHeight="1080.0" prefWidth="960.0">
+               <children>
+                  <Label fx:id="LOGIN" layoutX="355.0" layoutY="200.0" onMouseClicked="#LOGIN_CLICKED" onMouseEntered="#LOGIN_MOUSE_ENTERED" onMouseExited="#LOGIN_MOUSE_EXITED" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: GREY; -fx-background-radius: 20; -fx-border-radius: 20;" text="  LOGIN  " textFill="WHITE">
+                     <font>
+                        <Font name="BatmanForeverAlternate" size="44.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="SIGNUP_PANEL" layoutX="460.0" opacity="0.0" prefHeight="1080.0" prefWidth="960.0">
+               <children>
+                  <Label fx:id="SIGNUP" layoutX="315.0" layoutY="200.0" onMouseClicked="#SIGNUP_CLICKED" onMouseEntered="#SIGNUP_MOUSE_ENTERED" onMouseExited="#SIGNUP_MOUSE_EXITED" prefHeight="80.0" prefWidth="330.0" style="-fx-border-color: GREY; -fx-border-radius: 20; -fx-background-radius: 20;" text="  SIGN UP  " textFill="WHITE">
+                     <font>
+                        <Font name="BatmanForeverAlternate" size="44.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="LOGIN_PANEL_PANE" layoutX="-1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: BLACK;">
+         <children>
+            <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@myspace_bigger.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="SIGNUP_PANEL_PANE" layoutX="1920.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+            <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@myspace_bigger.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="cockpit" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" y="300.0">
+         <image>
+            <Image url="@CockPit.png" />
+         </image>
+         <effect>
+            <ColorAdjust contrast="0.08" />
+         </effect>
+      </ImageView>
+      <AnchorPane fx:id="data_signup_panel" layoutX="805.0" layoutY="390.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <JFXTextField fx:id="signup_Username_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" onMouseClicked="#signup_username_clicked" prefHeight="0.0" prefWidth="330.0" promptText="USERNAME" unFocusColor="BLACK">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="signup_password_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" layoutY="80.0" onMouseClicked="#signup_password_clicked" prefWidth="330.0" promptText="PASSWORD" unFocusColor="BLACK">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXTextField fx:id="signup_emailid_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" layoutY="160.0" onMouseClicked="#signup_email_clicked" prefWidth="330.0" promptText="EMAIL-ID" unFocusColor="BLACK">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="signup_back" buttonType="RAISED" focusTraversable="false" layoutX="180.0" layoutY="240.0" onAction="#signup_back_clicked" ripplerFill="WHITE" style="-fx-background-radius: 20; -fx-border-radius: 20;" text="BACK" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="SignUp_btn" buttonType="RAISED" focusTraversable="false" layoutX="80.0" layoutY="240.0" onAction="#signup_btn_clicked" ripplerFill="WHITE" text="SIGN UP" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="data_login_panel" layoutX="805.0" layoutY="390.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <JFXTextField fx:id="login_Username_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" onMouseClicked="#login_username_clicked" prefHeight="0.0" prefWidth="330.0" promptText="USERNAME" unFocusColor="BLACK">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="login_password_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" layoutY="80.0" onMouseClicked="#login_password_clicked" prefWidth="330.0" promptText="PASSWORD" unFocusColor="BLACK">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXTextField fx:id="login_email_tf" alignment="CENTER" focusColor="WHITE" focusTraversable="false" labelFloat="true" layoutY="160.0" onMouseClicked="#login_email_clicked" prefWidth="330.0" promptText="EMAIL-ID" unFocusColor="BLACK">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="login_back" buttonType="RAISED" focusTraversable="false" layoutX="170.0" layoutY="240.0" onAction="#login_back_clicked" ripplerFill="WHITE" style="-fx-background-radius: 20; -fx-border-radius: 20;" text="BACK" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Login_btn" buttonType="RAISED" focusTraversable="false" layoutX="80.0" layoutY="240.0" onAction="#login_btn_clicked" ripplerFill="WHITE" style="-fx-background-radius: 20; -fx-border-radius: 20;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" fx:id="MainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newapp.MainPageController">
+    <children>
+        <AnchorPane fx:id="SpaceAnchor" prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <ImageView fx:id="space" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@myspace.png" />
+                    </image>
+                </ImageView>
+                <AnchorPane fx:id="Image_Panel" layoutX="480.0" layoutY="270.0" prefHeight="540.0" prefWidth="960.0">
+                    <children>
+                        <Pane fx:id="Intro_panel" onScroll="#mousescrolled" prefHeight="540.0" prefWidth="960.0" style="-fx-border-color: white;">
+                            <children>
+                                <JFXButton fx:id="button" buttonType="RAISED" focusTraversable="false" layoutX="293.0" layoutY="449.0" onAction="#buttonPressed" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="ENTER THE WORLD" textFill="WHITE">
+                                    <font>
+                                        <Font name="BatmanForeverAlternate" size="28.0" />
+                                    </font>
+                                </JFXButton>
+                                <Label layoutX="189.0" layoutY="375.0" text="THE BRIGHTEST IN THE DARKEST" textFill="WHITE">
+                                    <font>
+                                        <Font name="BatmanForeverAlternate" size="28.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="390.0" layoutY="127.0" text="SIRIUS" textFill="WHITE">
+                                    <font>
+                                        <Font name="BatmanForeverAlternate" size="48.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="595.0" layoutY="127.0" text="IDE" textFill="WHITE">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                    </children>
+                </AnchorPane>
+                <ImageView fx:id="ufo_left" fitHeight="316.0" fitWidth="676.0" layoutX="627.0" layoutY="43.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@ufo2.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="image4" fitHeight="540.0" fitWidth="960.0" layoutX="480.0" layoutY="270.0" onScroll="#image4_scrolled" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@croped_2.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="image3" fitHeight="540.0" fitWidth="960.0" layoutX="480.0" layoutY="270.0" onScroll="#image3_scrolled" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@croped_3.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="image2" fitHeight="540.0" fitWidth="960.0" layoutX="480.0" layoutY="270.0" onScroll="#image2_scrolled" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@croped_1.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="image1" fitHeight="540.0" fitWidth="960.0" layoutX="480.0" layoutY="270.0" onScroll="#image1_scrolled" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@croped_4.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="chain" fitHeight="280.0" fitWidth="290.0" layoutX="-398.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                    <image>
+                        <Image url="@chain-1162544_1920.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="rocket" fitHeight="253.0" fitWidth="135.0" layoutX="-200.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                    <image>
+                        <Image url="@soyuz-153929.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="ufo_right" fitHeight="135.0" fitWidth="364.0" layoutX="2720.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@ufo.png" />
+                    </image>
+                </ImageView>
+                <AnchorPane fx:id="Features_panel" layoutX="480.0" layoutY="270.0" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: Black;">
+                    <children>
+                        <WebView fx:id="webview" prefHeight="540.0" prefWidth="960.0" />
+                        <Label layoutX="400.0" layoutY="270.0" text="FEATURES" textFill="WHITE">
+                            <font>
+                                <Font name="BatmanForeverAlternate" size="32.0" />
+                            </font>
+                        </Label>
+                        <JFXButton fx:id="get_started_btn" buttonType="RAISED" focusTraversable="false" layoutX="451.0" layoutY="347.0" onAction="#get_started_btn_clicked" ripplerFill="WHITE" style="-fx-border-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" text="GET STARTED" textFill="WHITE">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="earthAnchor" layoutY="1080.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;">
+            <children>
+                <ImageView fx:id="space2" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@myspace.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="earth_image" fitHeight="3075.0" fitWidth="3000.0" layoutX="-548.0" layoutY="-101.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@earth.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="Satellite" fitHeight="150.0" fitWidth="200.0" layoutX="1056.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@satellite.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="Finger_print_anchor" layoutX="620.0" layoutY="390.0" opacity="0.0" prefHeight="300.0" prefWidth="650.0" style="-fx-border-color: WHITE;">
+            <children>
+                <Label layoutX="48.0" layoutY="123.0" prefHeight="26.0" prefWidth="608.0" text="Connect your smartphone to the same Network and enter :-" textFill="WHITE">
+                    <font>
+                        <Font name="BatmanForeverAlternate" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="ip_tf" alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="150.0" prefWidth="250.0" text="Hello World" textFill="WHITE">
+                    <font>
+                        <Font name="DS-Digital" size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="188.0" prefHeight="26.0" prefWidth="676.0" text="As your IP address and verify yourself via Biometric verification" textFill="WHITE">
+                    <font>
+                        <Font name="BatmanForeverAlternate" size="14.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="reply_tf" alignment="CENTER" editable="false" focusColor="WHITE" focusTraversable="false" layoutX="248.0" layoutY="230.0" onKeyPressed="#reply_incoming" prefHeight="26.0" prefWidth="208.0" text="WAITING FOR REPLY......" unFocusColor="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </JFXTextField>
+                <ImageView fitHeight="99.0" fitWidth="105.0" layoutX="294.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@finger.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
